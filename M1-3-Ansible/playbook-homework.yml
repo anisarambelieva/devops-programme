@@ -38,7 +38,9 @@
     - name: Run Docker container
       docker_container:
         name: docker_container_python_app
-        image: sarambelieva/python-app:{{ image_tag }}
+        image: "{{ image_name }}:{{ image_tag }}"
         state: started
+        env:
+          PORT: "{{ listen_port }}"
         ports:
-          - "5002:5002"
+          - "{{ listen_port }}:{{ listen_port }}"
