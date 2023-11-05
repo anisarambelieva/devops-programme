@@ -20,9 +20,13 @@
         dest: code/
       register: gitresult
 
+    - name: Set image_tag variable
+      set_fact:
+        image_tag: "{{ gitresult.after }}"
+
     - name: Build Docker image from Dockerfile
       docker_image:
-        name: sarambelieva/python-app:{{ gitresult.after }}
+        name: sarambelieva/python-app:{{ image_tag }}
         build:
           path: code/
           dockerfile: Dockerfile
@@ -30,7 +34,7 @@
         
     - name: Push image to Docker hub
       docker_image:
-        name: sarambelieva/python-app:{{ gitresult.after }}
+        name: sarambelieva/python-app:{{ image_tag }}
         repository: sarambelieva/python-app
         push: yes
         source: local
@@ -38,7 +42,7 @@
     - name: Run Docker container
       docker_container:
         name: docker_container_python_app
-        image: sarambelieva/python-app:{{ gitresult.after }}
+        image: sarambelieva/python-app:{{ image_tag }}
         state: started
         ports:
           - "5002:5002"
