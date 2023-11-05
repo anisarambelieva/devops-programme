@@ -4,7 +4,6 @@
 
   vars:
     image_name: "sarambelieva/python-app"
-    image_tag: "0.1"
     listen_port: "5002"
 
   tasks:
