@@ -1,0 +1,44 @@
+- hosts: localhost
+  gather_facts: yes
+  become: no
+
+  vars:
+    image_name: "sarambelieva/python-app"
+    image_tag: "0.1"
+    listen_port: "5002"
+
+  tasks:
+    - name: Create code directory
+      file:
+        dest: code/
+        state: directory
+
+    - name: Get latest changes from GitHub
+      git:
+        repo: git@github.com:anisarambelieva/devops-programme.git
+        version: main
+        dest: code/
+      register: gitresult
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: sarambelieva/python-app:{{ gitresult.after }}
+        build:
+          path: code/
+          dockerfile: Dockerfile
+        source: build
+        
+    - name: Push image to Docker hub
+      docker_image:
+        name: sarambelieva/python-app:{{ gitresult.after }}
+        repository: sarambelieva/python-app
+        push: yes
+        source: local
+
+    - name: Run Docker container
+      docker_container:
+        name: docker_container_python_app
+        image: sarambelieva/python-app:{{ gitresult.after }}
+        state: started
+        ports:
+          - "5002:5002"
