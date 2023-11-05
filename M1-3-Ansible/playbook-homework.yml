@@ -24,20 +24,16 @@
       set_fact:
         image_tag: "{{ gitresult.after }}"
 
-    - name: Build Docker image from Dockerfile
+    - name: Build and push Docker image
       docker_image:
-        name: sarambelieva/python-app:{{ image_tag }}
         build:
           path: code/
           dockerfile: Dockerfile
+        name: "{{ image_name }}"
+        tag: "{{ image_tag }}"
+        push: true
         source: build
-        
-    - name: Push image to Docker hub
-      docker_image:
-        name: sarambelieva/python-app:{{ image_tag }}
-        repository: sarambelieva/python-app
-        push: yes
-        source: local
+        state: present
 
     - name: Run Docker container
       docker_container:
