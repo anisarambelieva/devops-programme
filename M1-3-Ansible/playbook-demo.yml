@@ -1,0 +1,32 @@
+- hosts: localhost
+  gather_facts: no
+  become: no
+
+  vars:
+    image_name: "sarambelieva/python-app"
+    image_tag: "0.1"
+    listen_port: "5001"
+
+  tasks:
+    - name: Create code directory
+      file:
+        dest: code/
+        state: directory
+
+    - name: Get latest changes from GitHub
+      git:
+        repo: git@github.com:anisarambelieva/devops-programme.git
+        version: main
+        dest: code/
+
+    - name: Install required Python libraries
+      pip:
+        chdir: code/
+        requirements: "requirements.txt"
+        state: present
+
+    - name: Start app
+      shell: "flask run -h 0.0.0.0 -p 5001 &"
+      args:
+        chdir: code/app
+

@@ -1,0 +1,45 @@
+- hosts: localhost
+  gather_facts: yes
+  become: no
+
+  vars:
+    image_name: "sarambelieva/python-app"
+    listen_port: "5002"
+
+  tasks:
+    - name: Create code directory
+      file:
+        dest: code/
+        state: directory
+
+    - name: Get latest changes from GitHub
+      git:
+        repo: git@github.com:anisarambelieva/devops-programme.git
+        version: main
+        dest: code/
+      register: gitresult
+
+    - name: Set image_tag variable
+      set_fact:
+        image_tag: "{{ gitresult.after }}"
+
+    - name: Build and push Docker image
+      docker_image:
+        build:
+          path: code/
+          dockerfile: Dockerfile
+        name: "{{ image_name }}"
+        tag: "{{ image_tag }}"
+        push: true
+        source: build
+        state: present
+
+    - name: Run Docker container
+      docker_container:
+        name: docker_container_python_app
+        image: "{{ image_name }}:{{ image_tag }}"
+        state: started
+        env:
+          PORT: "{{ listen_port }}"
+        ports:
+          - "{{ listen_port }}:{{ listen_port }}"
