@@ -1,0 +1,14 @@
+name: PR pipeline
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    paths: ['**.py', 'Dockerfile']
+
+jobs:
+  pr_opened:
+    name: PR open
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Success
