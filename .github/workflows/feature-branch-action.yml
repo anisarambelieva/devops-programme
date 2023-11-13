@@ -39,5 +39,5 @@ jobs:
       - name: Markdownlint 
         uses: nosborn/github-action-markdown-cli@v3.3.0
         with:
-          files: *.md
+          files: .md
           config_file: .editorconfig
