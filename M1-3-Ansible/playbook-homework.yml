@@ -1,6 +1,8 @@
 - hosts: localhost
   gather_facts: yes
   become: no
+  vars_files:
+    - vars/vault.yml
 
   vars:
     image_name: "sarambelieva/python-app"
@@ -22,6 +24,11 @@
     - name: Set image_tag variable
       set_fact:
         image_tag: "{{ gitresult.after }}"
+
+    - name: Log into DockerHub
+      docker_login:
+        username: "{{ username }}"
+        password: "{{ password }}"
 
     - name: Build and push Docker image
       docker_image:
