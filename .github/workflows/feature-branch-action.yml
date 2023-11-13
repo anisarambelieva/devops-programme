@@ -28,7 +28,7 @@ jobs:
         run: pip install black pylint
 
       - name: Run linters
-        run: pylint -d C0114,C0115,C0116 *.py
+        run: pylint -d C0114,C0115,C0116 $(git ls-files '*.py')
 
   check-markdown:
     runs-on: ubuntu-latest
