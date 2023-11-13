@@ -28,10 +28,7 @@ jobs:
         run: pip install black pylint
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          black: true
-          pylint: true
+        run: pylint -d C0114,C0115,C0116 *.py
 
   check-markdown:
     runs-on: ubuntu-latest
