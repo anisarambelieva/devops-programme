@@ -32,3 +32,12 @@ jobs:
         with:
           black: true
           pylint: true
+
+  check-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Markdownlint 
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          files: *.md
+          config_file: .editorconfig
