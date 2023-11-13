@@ -6,7 +6,9 @@ on:
       - add-github-actions-practice
       
 jobs:
-  Explore-GitHub-Actions:
+  check-editorconfig:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - uses: actions/checkout@v2
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+      - run: editorconfig-checker
