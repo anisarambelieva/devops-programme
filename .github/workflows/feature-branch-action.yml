@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
-        
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -59,4 +59,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Test with pytest
-        run: pytest app_test.py
+        run: pytest app/app_test.py
