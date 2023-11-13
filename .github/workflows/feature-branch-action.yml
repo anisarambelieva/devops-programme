@@ -40,6 +40,7 @@ jobs:
         uses: nosborn/github-action-markdown-cli@v3.3.0
         with:
           files: .md
+          config_file: .markdownlint.json
 
   run-unit-tests:
     runs-on: ubuntu-latest
