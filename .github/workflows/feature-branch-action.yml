@@ -90,3 +90,13 @@ jobs:
           -Dsonar.organization=anisarambelieva
           -Dsonar.projectKey=anisarambelieva_devops-programme
 
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
