@@ -87,5 +87,4 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
-          -sonar.organization=my-organization
           -sonar.projectKey=my-projectkey
