@@ -88,5 +88,5 @@ jobs:
       with:
         args: >
           -Dsonar.organization=anisarambelieva
-          -Dsonar.projectKey=devops-programme
+          -Dsonar.projectKey=anisarambelieva_devops-programme
 
