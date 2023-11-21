@@ -87,6 +87,6 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
-          -Dsonar.organization=anisarambelieva
+          -Dsonar.organization=Anna Sarambelieva
           -Dsonar.projectKey=devops-programme
 
