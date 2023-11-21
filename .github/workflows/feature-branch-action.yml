@@ -89,4 +89,5 @@ jobs:
         args: >
           -Dsonar.organization=anisarambelieva
           -Dsonar.projectKey=devops-programme
+          -Dsonar.branch.name=add-github-actions-practice
 
