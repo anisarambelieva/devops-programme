@@ -95,7 +95,10 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
-        
+      
+      - name: Open python app directory
+        run: cd app
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
         env:
