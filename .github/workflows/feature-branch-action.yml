@@ -96,10 +96,10 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
       
-      - name: Open python app directory
-        run: | 
+      - name: Change directory and Install pip
+        run: |
           cd app
-          ls
+          python -m pip install --upgrade pip
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
