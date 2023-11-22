@@ -108,3 +108,7 @@ jobs:
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      
+      - name: Check dir
+        run: |
+          pwd
