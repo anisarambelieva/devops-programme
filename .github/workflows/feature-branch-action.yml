@@ -98,7 +98,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          mv app/requirements.txt .
+          mv app/requirements.txt app/app.py app/ app_test.py .
           pwd
           cat requirements.txt
           python -m pip install --upgrade pip
