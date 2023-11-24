@@ -119,8 +119,6 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./app
-          file: ./app/Dockerfile
           tags: '${{ secrets.DOCKERHUB_USERNAME }}/${{ github.sha }}'
       
       - name: Run Trivy vulnerability scanner
