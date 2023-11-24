@@ -121,7 +121,7 @@ jobs:
         with:
           context: ./app
           file: ./app/Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.sha }}'
+          tags: '${{ secrets.DOCKERHUB_USERNAME }}/${{ github.sha }}'
       
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
