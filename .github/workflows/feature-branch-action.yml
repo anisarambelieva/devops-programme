@@ -19,6 +19,9 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
+      - name: Run Black linter
+        uses: psf/black@stable
+
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
