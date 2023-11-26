@@ -1,6 +1,8 @@
 name: Feature branch pipeline
 
 on:
+  schedule:
+    - cron: '1 * * * *'
   push:
     branches:
       - add-github-actions-practice
