@@ -106,6 +106,7 @@ jobs:
         uses: snyk/actions/python@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          DEBUG: true
         with:
           args: --severity-threshold=critical
 
