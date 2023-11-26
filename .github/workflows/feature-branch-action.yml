@@ -109,7 +109,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
+        uses: snyk/actions/python-3.10@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           DEBUG: true
